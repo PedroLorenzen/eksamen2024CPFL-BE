@@ -70,7 +70,7 @@ public class InitData implements CommandLineRunner
                 room.setPrice(50 + random.nextInt(101));
                 room.setRoomNumber(j + 1);
                 room.setDescription("Welcome to Roomnumber: " + (j + 1));
-                room.setStatus(false);
+                room.setStatusBooked(false);
                 room.setCreated(LocalDateTime.now());
                 room.setUpdated(LocalDateTime.now());
 
