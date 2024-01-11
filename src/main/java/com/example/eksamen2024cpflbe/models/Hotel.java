@@ -24,9 +24,9 @@ public class Hotel
     LocalDateTime created;
     LocalDateTime updated;
 
-    @OneToMany(mappedBy = "hotel")
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE)
     private List<Room> rooms;
 
-    @OneToMany(mappedBy = "hotel")
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE)
     private List<Reservation> reservations;
 }

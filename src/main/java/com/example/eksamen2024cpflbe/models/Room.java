@@ -13,7 +13,7 @@ public class Room
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     int roomNumber;
-    int capacity; // 1-4
+    int numberOfBeds; // 1-4
     int price;
     String picture;
     String description;
