@@ -35,7 +35,7 @@ public class UserRestController
             user.setCreated(java.time.LocalDateTime.now());
             user.setUpdated(java.time.LocalDateTime.now());
             User savedUser = userRepository.save(user);
-            System.out.println("User with id: " + savedUser.getId() + ", name: " + savedUser.getName() + " and username: " + savedUser.getUsername() + ", has been saved to the database");
+            System.out.println("User with name: " + savedUser.getName() + " and username: " + savedUser.getUsername() + ", has been saved to the database");
             return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
         }
     }

@@ -86,7 +86,7 @@ public class HotelRestController
             hotel.setCreated(java.time.LocalDateTime.now());
             hotel.setUpdated(java.time.LocalDateTime.now());
             Hotel savedHotel = hotelRepository.save(hotel);
-            System.out.println("Hotel with id name: " + savedHotel.getName() + " and adress: " + savedHotel.getAddress() + ", has been saved to the database");
+            System.out.println("Hotel with name: " + savedHotel.getName() + " and adress: " + savedHotel.getAddress() + ", has been saved to the database");
             return new ResponseEntity<>(savedHotel, HttpStatus.CREATED);
         }
     }
