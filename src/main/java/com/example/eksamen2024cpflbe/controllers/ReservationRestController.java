@@ -32,7 +32,6 @@ public class ReservationRestController
     @PostMapping("/reservation")
     public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservation)
     {
-        // Fetch the room and check if it exists
         Optional<Room> roomOptional = roomRepository.findById(reservation.getRoom().getId());
         if (roomOptional.isPresent())
         {

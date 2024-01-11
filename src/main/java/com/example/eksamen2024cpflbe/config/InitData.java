@@ -39,7 +39,7 @@ public class InitData implements CommandLineRunner
     {
         try
         {
-            for ( int i = 0; i < 10; i++ ) // skal være 250 - men sætter til 10 så det ikke tager så lang tid
+            for ( int i = 0; i < 250; i++ ) // skal være 250 - men sætter til 10 så det ikke tager så lang tid
             {
                 Hotel hotel = new Hotel();
                 hotel.setName("Hotel " + (i + 1));
@@ -109,4 +109,5 @@ public class InitData implements CommandLineRunner
     }
 }
 
-*/
+
+ */
