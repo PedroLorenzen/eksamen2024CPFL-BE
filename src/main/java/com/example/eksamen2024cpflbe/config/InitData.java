@@ -99,8 +99,6 @@ public class InitData implements CommandLineRunner
             guest.setLastName("Lorenzen");
             guest.setEmail("lorider@coolkid.com");
             guest.setPhone(12345678);
-            guest.setUsername("root");
-            guest.setPassword("Sesame80");
             guest.setCreated(LocalDateTime.now());
             guest.setUpdated(LocalDateTime.now());
             guestRepository.save(guest);

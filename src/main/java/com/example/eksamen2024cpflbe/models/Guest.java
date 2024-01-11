@@ -18,8 +18,6 @@ public class Guest
     String lastName;
     String email;
     int phone;
-    String username;
-    String password;
     LocalDateTime created;
     LocalDateTime updated;
 
