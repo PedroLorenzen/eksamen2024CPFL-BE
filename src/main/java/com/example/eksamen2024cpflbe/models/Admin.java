@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -18,6 +18,6 @@ public class Admin
     String name;
     String username;
     String password;
-    Date created;
-    Date updated;
+    LocalDateTime created;
+    LocalDateTime updated;
 }

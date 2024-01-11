@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -17,8 +18,8 @@ public class Reservation
     Date reservationDate;
     Date startDate;
     Date endDate;
-    Date updated;
-    Date created;
+    LocalDateTime created;
+    LocalDateTime updated;
 
     @ManyToOne
     @JoinColumn(name = "guestId", referencedColumnName = "id")

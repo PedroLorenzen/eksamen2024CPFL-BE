@@ -3,7 +3,7 @@ package com.example.eksamen2024cpflbe.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -19,8 +19,8 @@ public class Guest
     int phoneNumber;
     String username;
     String password;
-    Date updated;
-    Date created;
+    LocalDateTime created;
+    LocalDateTime updated;
 
     @OneToMany(mappedBy = "guest")
     private List<Reservation> reservations;

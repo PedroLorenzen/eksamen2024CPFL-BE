@@ -3,7 +3,7 @@ package com.example.eksamen2024cpflbe.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -12,16 +12,15 @@ public class Room
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    int hotelId;
     int roomNumber;
-    int numberOfBeds; // 1-4
+    int capacity; // 1-4
     int price;
     String picture;
     String description;
     String type;
     boolean status;
-    Date created;
-    Date updated;
+    LocalDateTime created;
+    LocalDateTime updated;
 
     @ManyToOne
     @JoinColumn(name = "hotelId", referencedColumnName = "id")
