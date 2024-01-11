@@ -24,7 +24,7 @@ public class HotelRestController
     @Autowired
     HotelDTOService hotelDTOService;
 
-    @GetMapping("/hotels")
+    @GetMapping("/dtohotels")
     public List<HotelDTO> getHotels()
     {
         List<Hotel> allHotels = hotelRepository.findAll();
@@ -35,18 +35,18 @@ public class HotelRestController
             HotelDTO hotelDTO = hotelDTOService.convertHotelToDTO(hotel);
             hotelDTOList.add(hotelDTO);
         }
-        System.out.println("All hotels requested");
+        System.out.println("All hotels in DTO form requested");
         return hotelDTOList;
     }
 
-    @GetMapping("/hotel/{id}")
-    public ResponseEntity<HotelDTO> getHotelById(@PathVariable int id)
+    @GetMapping("/dtohotel/{id}")
+    public ResponseEntity<HotelDTO> getHotelDTOById(@PathVariable int id)
     {
         Optional<Hotel> hotelOptional = hotelRepository.findById(id);
         if ( hotelOptional.isPresent() )
         {
             HotelDTO hotelDTO = hotelDTOService.convertHotelToDTO(hotelOptional.get());
-            System.out.println("Hotel with id: " + id + " requested");
+            System.out.println("Hotel DTO with id: " + id + " requested");
             return new ResponseEntity<>(hotelDTO, HttpStatus.OK);
         }
         else
@@ -55,10 +55,26 @@ public class HotelRestController
         }
     }
 
+    @GetMapping("/hotel/{id}")
+    public ResponseEntity<Hotel> getFullHotelById(@PathVariable int id)
+    {
+        Optional<Hotel> hotelOptional = hotelRepository.findById(id);
+        if ( hotelOptional.isPresent() )
+        {
+            System.out.println("Full hotel object with id: " + id + " requested for updating");
+            return new ResponseEntity<>(hotelOptional.get(), HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+
     @PostMapping("/hotel")
     public ResponseEntity<Hotel> createHotel(@RequestBody Hotel hotel)
     {
-        Optional<Hotel> existingHotel = hotelRepository.findById(hotel.getId());
+        Optional<Hotel> existingHotel = hotelRepository.findByName(hotel.getName());
 
         if ( existingHotel.isPresent() )
         {
@@ -67,6 +83,8 @@ public class HotelRestController
         }
         else
         {
+            hotel.setCreated(java.time.LocalDateTime.now());
+            hotel.setUpdated(java.time.LocalDateTime.now());
             Hotel savedHotel = hotelRepository.save(hotel);
             System.out.println("Hotel with id: " + savedHotel.getId() + ", name: " + savedHotel.getName() + " and adress: " + savedHotel.getAddress() + ", has been saved to the database");
             return new ResponseEntity<>(savedHotel, HttpStatus.CREATED);
@@ -80,6 +98,7 @@ public class HotelRestController
         if ( hotelOptional.isPresent() )
         {
             hotel.setId(id);
+            hotel.setUpdated(java.time.LocalDateTime.now());
             hotelRepository.save(hotel);
             System.out.println("The updated Hotel with id: " + hotel.getId() + ", name: " + hotel.getName() + " and adress: " + hotel.getAddress() + ", has been updated in the database");
             return new ResponseEntity<>(hotel, HttpStatus.OK);
