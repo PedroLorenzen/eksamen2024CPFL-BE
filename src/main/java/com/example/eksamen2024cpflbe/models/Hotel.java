@@ -28,8 +28,4 @@ public class Hotel
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE)
     @JsonManagedReference("hotel-room")
     private List<Room> rooms;
-
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE)
-    @JsonManagedReference("hotel-reservation")
-    private List<Reservation> reservations;
 }

@@ -1,5 +1,4 @@
 /*
-
 package com.example.eksamen2024cpflbe.config;
 
 import com.example.eksamen2024cpflbe.models.Guest;

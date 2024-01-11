@@ -45,7 +45,6 @@ public class RoomRestController
         Optional<Hotel> hotelOptional = hotelRepository.findById(id);
         if ( hotelOptional.isPresent() )
         {
-            String hotelName = hotelOptional.get().getName();
             Optional<Room> existingRoom = roomRepository.findByHotelIdAndRoomNumber(id, room.getRoomNumber());
             if ( existingRoom.isPresent() )
             {
@@ -58,6 +57,7 @@ public class RoomRestController
                 room.setCreated(LocalDateTime.now());
                 room.setUpdated(LocalDateTime.now());
                 Room savedRoom = roomRepository.save(room);
+                String hotelName = hotelOptional.get().getName();
                 System.out.println("Room with room-number: " + savedRoom.getRoomNumber() + " in the hotel: " + hotelName + " has been saved to the database");
                 return new ResponseEntity<>(savedRoom, HttpStatus.CREATED);
             }

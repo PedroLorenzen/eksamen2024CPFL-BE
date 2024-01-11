@@ -86,7 +86,7 @@ public class HotelRestController
             hotel.setCreated(java.time.LocalDateTime.now());
             hotel.setUpdated(java.time.LocalDateTime.now());
             Hotel savedHotel = hotelRepository.save(hotel);
-            System.out.println("Hotel with id: " + savedHotel.getId() + ", name: " + savedHotel.getName() + " and adress: " + savedHotel.getAddress() + ", has been saved to the database");
+            System.out.println("Hotel with id name: " + savedHotel.getName() + " and adress: " + savedHotel.getAddress() + ", has been saved to the database");
             return new ResponseEntity<>(savedHotel, HttpStatus.CREATED);
         }
     }
@@ -118,7 +118,7 @@ public class HotelRestController
             Hotel hotel = hotelOptional.get();
             List<Integer> reservations = new ArrayList<>();
 
-            if ( hotel.getReservations() != null )
+            /*if ( hotel.roo() != null )
             {
                 for ( Reservation reservation : hotel.getReservations() )
                 {
@@ -130,7 +130,7 @@ public class HotelRestController
                     System.out.println(reservations + " reservations are active. You can't delete the hotel");
                     return new ResponseEntity<>("Hotel with active reservations cannot be deleted", HttpStatus.BAD_REQUEST);
                 }
-            }
+            }*/
 
             hotelRepository.deleteById(id);
             System.out.println("Hotel with id: " + id + " has been deleted from the database");

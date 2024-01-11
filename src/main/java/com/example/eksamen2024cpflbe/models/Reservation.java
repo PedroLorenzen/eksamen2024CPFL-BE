@@ -14,11 +14,8 @@ public class Reservation
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    int guests;
     int price; //prisen her må ikke tilpasse sig hvis room price ændrer sig - ikke sat op til at referere til room price
     Date reservationDate;
-    Date startDate;
-    Date endDate;
     LocalDateTime created;
     LocalDateTime updated;
 
@@ -26,11 +23,6 @@ public class Reservation
     @JoinColumn(name = "guestId", referencedColumnName = "id")
     @JsonBackReference("guest-reservation")
     private Guest guest;
-
-    @ManyToOne
-    @JoinColumn(name = "hotelId", referencedColumnName = "id")
-    @JsonBackReference("hotel-reservation")
-    private Hotel hotel;
 
     @ManyToOne
     @JoinColumn(name = "roomId", referencedColumnName = "id")
