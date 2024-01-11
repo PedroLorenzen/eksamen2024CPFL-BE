@@ -1,5 +1,6 @@
 package com.example.eksamen2024cpflbe.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -23,6 +24,7 @@ public class Guest
     LocalDateTime updated;
 
     @OneToMany(mappedBy = "guest")
+    @JsonManagedReference("guest-reservation")
     private List<Reservation> reservations;
 
 }

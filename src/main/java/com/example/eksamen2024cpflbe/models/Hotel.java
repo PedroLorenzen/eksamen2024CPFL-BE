@@ -1,5 +1,6 @@
 package com.example.eksamen2024cpflbe.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,8 +26,10 @@ public class Hotel
     LocalDateTime updated;
 
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE)
+    @JsonManagedReference("hotel-room")
     private List<Room> rooms;
 
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.REMOVE)
+    @JsonManagedReference("hotel-reservation")
     private List<Reservation> reservations;
 }

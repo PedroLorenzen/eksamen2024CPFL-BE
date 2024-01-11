@@ -1,5 +1,6 @@
 package com.example.eksamen2024cpflbe.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -23,13 +24,16 @@ public class Reservation
 
     @ManyToOne
     @JoinColumn(name = "guestId", referencedColumnName = "id")
+    @JsonBackReference("guest-reservation")
     private Guest guest;
 
     @ManyToOne
     @JoinColumn(name = "hotelId", referencedColumnName = "id")
+    @JsonBackReference("hotel-reservation")
     private Hotel hotel;
 
     @ManyToOne
     @JoinColumn(name = "roomId", referencedColumnName = "id")
+    @JsonBackReference("room-reservation")
     private Room room;
 }
