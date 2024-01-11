@@ -8,15 +8,19 @@ import org.springframework.stereotype.Service;
 public class HotelDTOService
 {
     // Denne metode konverterer et Hotel-objekt til et GetHotelDTO-objekt
-    public HotelDTO convertHotelToDTO(Hotel hotel) {
+    public HotelDTO convertHotelToDTO(Hotel hotel)
+    {
         HotelDTO dto = new HotelDTO();
         dto.setId(hotel.getId());
         dto.setName(hotel.getName());
         dto.setAddress(hotel.getAddress());
 
-        if (hotel.getRooms() != null) {
+        if ( hotel.getRooms() != null )
+        {
             dto.setRooms(hotel.getRooms().size());
-        } else {
+        }
+        else
+        {
             dto.setRooms(0);
         }
         return dto;

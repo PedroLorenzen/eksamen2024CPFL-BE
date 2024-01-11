@@ -20,7 +20,7 @@ public class Room
     String picture;
     String description;
     String type;
-    boolean statusBooked;
+    boolean statusBooked = false;
     LocalDateTime created;
     LocalDateTime updated;
 
