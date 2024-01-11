@@ -51,7 +51,7 @@ public class InitData implements CommandLineRunner
             hotel.setCity(randomCityGenerator.getRandomCity());
             hotel.setZip(1000 + random.nextInt(9000));
             hotel.setEmail("hotel" + i + "@hotel.com");
-            hotel.setPhoneNumber(10000000 + random.nextInt(90000000));
+            hotel.setPhone(10000000 + random.nextInt(90000000));
             hotel.setDescription("Welcome to Hotel" + (i + 1));
             hotel.setCreated(LocalDateTime.now());
             hotel.setUpdated(LocalDateTime.now());
@@ -101,7 +101,7 @@ public class InitData implements CommandLineRunner
         guest.setFirstName("Christian");
         guest.setLastName("Lorenzen");
         guest.setEmail("lorider@coolkid.com");
-        guest.setPhoneNumber(12345678);
+        guest.setPhone (12345678);
         guest.setUsername("root");
         guest.setPassword("Sesame80");
         guest.setCreated(LocalDateTime.now());

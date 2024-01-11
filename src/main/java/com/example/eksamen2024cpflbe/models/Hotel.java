@@ -18,7 +18,7 @@ public class Hotel
     String city;
     int zip;
     String email;
-    int phoneNumber;
+    int phone;
     String picture;
     String description;
     LocalDateTime created;

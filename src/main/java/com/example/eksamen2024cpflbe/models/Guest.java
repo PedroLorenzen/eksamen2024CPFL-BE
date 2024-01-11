@@ -16,7 +16,7 @@ public class Guest
     String firstName;
     String lastName;
     String email;
-    int phoneNumber;
+    int phone;
     String username;
     String password;
     LocalDateTime created;
