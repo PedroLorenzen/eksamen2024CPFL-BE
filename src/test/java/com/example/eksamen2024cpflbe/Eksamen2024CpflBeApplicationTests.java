@@ -19,7 +19,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class Eksamen2024CpflBeApplicationTests {
+class Eksamen2024CpflBeApplicationTests
+{
 
     @Mock
     private HotelRepository hotelRepository;
@@ -28,7 +29,8 @@ class Eksamen2024CpflBeApplicationTests {
     private HotelRestController hotelController;
 
     @Test
-    void whenHotelExists_thenRetrieveHotel() {
+    void whenHotelExists_thenRetrieveHotel()
+    {
         int id = 1; // Define a sample hotel ID
         Hotel hotel = new Hotel(); // Create a mock Hotel object
 
@@ -42,7 +44,8 @@ class Eksamen2024CpflBeApplicationTests {
     }
 
     @Test
-    void whenHotelDoesNotExist_thenNotFound() {
+    void whenHotelDoesNotExist_thenNotFound()
+    {
         int id = 1; // Define a sample hotel ID
 
         when(hotelRepository.findById(id)).thenReturn(Optional.empty());
