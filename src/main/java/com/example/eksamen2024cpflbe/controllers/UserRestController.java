@@ -1,6 +1,5 @@
 package com.example.eksamen2024cpflbe.controllers;
 
-import com.example.eksamen2024cpflbe.models.Hotel;
 import com.example.eksamen2024cpflbe.models.User;
 import com.example.eksamen2024cpflbe.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ public class UserRestController
     {
         Optional<User> existingUsername = userRepository.findByUsername(user.getUsername());
 
-        if (existingUsername.isPresent())
+        if ( existingUsername.isPresent() )
         {
             System.out.println("Username or already exists in the database");
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

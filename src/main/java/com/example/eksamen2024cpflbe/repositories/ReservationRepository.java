@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Integer>
 {
-   Optional<Reservation> findByRoomIdAndReservationDate(int roomId, Date reservationDate);
+    Optional<Reservation> findByRoomIdAndReservationDate(int roomId, Date reservationDate);
 
 
 }

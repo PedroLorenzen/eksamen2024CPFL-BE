@@ -1,5 +1,3 @@
-/*
-
 package com.example.eksamen2024cpflbe.config;
 
 import com.example.eksamen2024cpflbe.models.Guest;
@@ -40,7 +38,7 @@ public class InitData implements CommandLineRunner
     {
         try
         {
-            for ( int i = 0; i < 250; i++ ) // skal være 250 - men sætter til 10 så det ikke tager så lang tid
+            for ( int i = 0; i < 250; i++ ) // skal være 250
             {
                 Hotel hotel = new Hotel();
                 hotel.setName("Hotel " + (i + 1));
@@ -102,12 +100,29 @@ public class InitData implements CommandLineRunner
             guest.setCreated(LocalDateTime.now());
             guest.setUpdated(LocalDateTime.now());
             guestRepository.save(guest);
+
+            Guest guest2 = new Guest();
+            guest2.setFirstName("Merry");
+            guest2.setLastName("Christmas");
+            guest2.setEmail("julemanden@nordpolen.dk");
+            guest2.setPhone(87654321);
+            guest2.setCreated(LocalDateTime.now());
+            guest2.setUpdated(LocalDateTime.now());
+            guestRepository.save(guest2);
+
+            Guest guest3 = new Guest();
+            guest3.setFirstName("Ole");
+            guest3.setLastName("Henriksen");
+            guest3.setEmail("dinhuderskøn@productplacement.dk");
+            guest3.setPhone(12348765);
+            guest3.setCreated(LocalDateTime.now());
+            guest3.setUpdated(LocalDateTime.now());
+            guestRepository.save(guest3);
+
         }
-        catch ( Exception e )
+        catch (Exception e)
         {
             System.out.println("Error: " + e.getMessage());
         }
     }
 }
-
-*/

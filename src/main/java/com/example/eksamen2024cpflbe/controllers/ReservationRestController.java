@@ -33,7 +33,7 @@ public class ReservationRestController
     public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservation)
     {
         Optional<Room> roomOptional = roomRepository.findById(reservation.getRoom().getId());
-        if (roomOptional.isPresent())
+        if ( roomOptional.isPresent() )
         {
             Optional<Reservation> existingReservation = reservationRepository.findByRoomIdAndReservationDate(reservation.getRoom().getId(), reservation.getReservationDate());
             if ( existingReservation.isPresent() )

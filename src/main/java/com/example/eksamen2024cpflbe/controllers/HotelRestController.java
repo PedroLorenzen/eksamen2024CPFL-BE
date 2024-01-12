@@ -2,7 +2,6 @@ package com.example.eksamen2024cpflbe.controllers;
 
 import com.example.eksamen2024cpflbe.DTO.HotelDTO;
 import com.example.eksamen2024cpflbe.models.Hotel;
-import com.example.eksamen2024cpflbe.models.Reservation;
 import com.example.eksamen2024cpflbe.repositories.HotelRepository;
 import com.example.eksamen2024cpflbe.service.HotelDTOService;
 import org.springframework.beans.factory.annotation.Autowired;

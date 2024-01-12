@@ -23,13 +23,13 @@ public class RoomRestController
     @Autowired
     RoomRepository roomRepository;
 
-    /*@GetMapping("/hotel/{id}/rooms")
+    @GetMapping("/hotel/{id}/rooms")
     public ResponseEntity<List<Room>> getRoomsByHotel(@PathVariable int id)
     {
         Optional<Hotel> hotelOptional = hotelRepository.findById(id);
         if ( hotelOptional.isPresent() )
         {
-            List<Room> rooms = roomRepository.findByHotelId(id);
+            List<Room> rooms = roomRepository.findRoomsByHotelId(id);
             System.out.println("Rooms for hotel with id: " + id + " requested");
             return new ResponseEntity<>(rooms, HttpStatus.OK);
         }
@@ -37,7 +37,7 @@ public class RoomRestController
         {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
-    }*/
+    }
 
     @PostMapping("/hotel/{id}/room")
     public ResponseEntity<Room> createRoom(@PathVariable int id, @RequestBody Room room)
