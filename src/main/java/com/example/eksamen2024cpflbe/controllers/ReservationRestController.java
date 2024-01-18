@@ -1,7 +1,10 @@
 package com.example.eksamen2024cpflbe.controllers;
 
+import com.example.eksamen2024cpflbe.DTO.ReservationDTO;
+import com.example.eksamen2024cpflbe.models.Guest;
 import com.example.eksamen2024cpflbe.models.Reservation;
 import com.example.eksamen2024cpflbe.models.Room;
+import com.example.eksamen2024cpflbe.repositories.GuestRepository;
 import com.example.eksamen2024cpflbe.repositories.HotelRepository;
 import com.example.eksamen2024cpflbe.repositories.ReservationRepository;
 import com.example.eksamen2024cpflbe.repositories.RoomRepository;
@@ -24,34 +27,50 @@ public class ReservationRestController
     ReservationRepository reservationRepository;
 
     @Autowired
+    GuestRepository guestRepository;
+
+    @Autowired
     RoomRepository roomRepository;
 
     @Autowired
     HotelRepository hotelRepository;
 
-    @PostMapping("/reservation")
-    public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservation)
+    @PostMapping("/room/{roomId}/reservation")
+    public ResponseEntity<Reservation> createReservation(@RequestBody ReservationDTO reservationDTO)
     {
-        Optional<Room> roomOptional = roomRepository.findById(reservation.getRoom().getId());
-        if ( roomOptional.isPresent() )
+        // roomId og GuestId blev ikke sendt fra frontend så derfor lavede jeg en DTO klasse.
+        // Her henter jeg roomId og GuestId fra DTO klassen og bruger dem til at finde room og guest i databasen.
+        Optional<Room> roomOptional = roomRepository.findById(reservationDTO.getRoomId());
+        Optional<Guest> guestOptional = guestRepository.findById(reservationDTO.getGuestId());
+
+        if ( roomOptional.isPresent() && guestOptional.isPresent() )
         {
-            Optional<Reservation> existingReservation = reservationRepository.findByRoomIdAndReservationDate(reservation.getRoom().getId(), reservation.getReservationDate());
+            Reservation reservation = new Reservation();
+            reservation.setRoom(roomOptional.get());
+            reservation.setGuest(guestOptional.get());
+            reservation.setPrice(reservationDTO.getPrice());
+            reservation.setReservationDate(reservationDTO.getReservationDate());
+            reservation.setCreated(LocalDateTime.now());
+            reservation.setUpdated(LocalDateTime.now());
+
+            Optional<Reservation> existingReservation =
+                    reservationRepository.findByRoomIdAndReservationDate(reservation.getRoom().getId(), reservation.getReservationDate());
+
             if ( existingReservation.isPresent() )
             {
                 System.out.println("The room is already booked on this date");
                 return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
             }
-            reservation.setRoom(roomOptional.get());
-            reservation.setCreated(LocalDateTime.now());
-            reservation.setUpdated(LocalDateTime.now());
+
             Reservation savedReservation = reservationRepository.save(reservation);
-            System.out.println("Reservation for room: " + savedReservation.getRoom().getRoomNumber() + " on date: " + savedReservation.getReservationDate() + ", has been saved to the database");
+            System.out.println("Reservation for room: " + savedReservation.getRoom().getRoomNumber() +
+                    " on date: " + savedReservation.getReservationDate() + ", has been saved to the database");
 
             return new ResponseEntity<>(savedReservation, HttpStatus.CREATED);
         }
         else
         {
-            System.out.println("Room not found in the database");
+            System.out.println("Room or guest not found in the database");
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }

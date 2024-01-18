@@ -23,6 +23,31 @@ public class RoomRestController
     @Autowired
     RoomRepository roomRepository;
 
+    @GetMapping("hotel/{hotelId}/room/{roomNumber}")
+    public ResponseEntity<Room> getRoomByHotelAndRoomNumber(@PathVariable int hotelId, @PathVariable int roomNumber)
+    {
+        Optional<Hotel> hotelOptional = hotelRepository.findById(hotelId);
+        if ( hotelOptional.isPresent() )
+        {
+            Optional<Room> roomOptional = roomRepository.findByHotelIdAndRoomNumber(hotelId, roomNumber);
+            if ( roomOptional.isPresent() )
+            {
+                System.out.println("Room with room-number: " + roomNumber + " in the hotel with id: " + hotelId + " requested");
+                return new ResponseEntity<>(roomOptional.get(), HttpStatus.OK);
+            }
+            else
+            {
+                System.out.println("Room not found in the database");
+                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            }
+        }
+        else
+        {
+            System.out.println("Hotel not found in the database");
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("/hotel/{id}/rooms")
     public ResponseEntity<List<Room>> getRoomsByHotel(@PathVariable int id)
     {
